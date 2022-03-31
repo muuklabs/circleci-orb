@@ -1,8 +1,8 @@
 description: |
   By default, test are run on chrome, this example instead, runs the test with tag TC0001 on firefox using the browser parameter.
-  Prerequisites: set muuk_key environment variable under your CircleCi project settings with your organization key. 
+  Prerequisites: set muuk_key environment variable under your CircleCi project settings with your organization key.
   Please see the following link for reference: https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
-  Want to know which is your organization key? No problem, see the next link for reference: 
+  Want to know which is your organization key? No problem, see the next link for reference:
   https://muuklabs.zendesk.com/hc/en-us/articles/4408400288787-Portal-Account
 
 usage:
@@ -12,6 +12,6 @@ usage:
   workflows:
     execute:
       jobs:
-       - muuktest/mkcli:
-          t: TC0001
-          browser: firefox
+        - muuktest/mkcli:
+            t: TC0001
+            browser: firefox

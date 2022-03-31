@@ -1,7 +1,7 @@
 version: 2.1
 
-description: >
-  MuukTest is a codeless test automation platform designed to make software testing 20x faster, since first day. 
+description: |
+  MuukTest is a codeless test automation platform designed to make software testing 20x faster, since first day.
   MuukTest CircleCI Orb provides a simple configuration to enable test execution from your muuktest.com organization within your CircleCI CI/CD process, easily.
 
 display:

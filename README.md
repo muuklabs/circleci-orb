@@ -64,10 +64,10 @@ This example executes all the tests with the hashtag '#deployment' (notice the #
   workflows:
     execute:
       jobs:
-       - muuktest/mkcli:
-          p: hashtag
-          t: deployment
-          browser: firefox
+        - muuktest/mkcli:
+            p: hashtag
+            t: deployment
+            browser: firefox
 ```
 
 ### How to Contribute
