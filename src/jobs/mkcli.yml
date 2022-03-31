@@ -1,5 +1,5 @@
 description: >
-  MuukTest mkcli executor to execute with Circle CI on Github pull requests
+  MuukTest mkcli to run your MuukTest automated test with CircleCI on Github pull requests
 
 docker:
   - image: muuk/muuktest_v1:0.1
@@ -11,13 +11,13 @@ parameters:
 
   t:
     type: string
-    description: "Test case id or hastag name"
+    description: "Test case id (tag) or hastag value"
 
   p:
     type: enum
     default: tag
     enum: [tag, hashtag]
-    description: "Set either tag or hastag regarding t value"
+    description: "Set either tag or hastag regarding t value to provide"
 
   browser:
     type: enum
