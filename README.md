@@ -10,7 +10,7 @@ The MuukTest CircleCI orb provides a simple configuration settings to enable exe
 You don't have a muuktest. account? [Sign up now](https://muuktest.com/sign-up/), it's free for individual users. You’ll be ready to start testing in less than 2-minutes! Once signed up, install the MuukTest plug-in and you’re ready to run your first test!
 
 ## Examples
-**Before to start ⚠️:** : prior to run any of the examples below and any other use of the muuktest orb, you need to set muuk_key environment variable under your CircleCi project settings with your organization key. Please see the following link for reference: (Set muuk_key environment)[https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project]
+**Before to start ⚠️:** prior to run any of the examples below and any other use of the muuktest orb, you need to set muuk_key environment variable under your CircleCi project settings with your organization key. Please see the following link for reference: (Set muuk_key environment)[https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project]
 Want to know which is your organization key? No problem, see the next link for reference: (MuukTest account)[https://muuklabs.zendesk.com/hc/en-us/articles/4408400288787-Portal-Account]
 
 
@@ -41,21 +41,7 @@ workflows:
           browser: firefox
 ```
 
-### Run test on firefox
-We also support firefox execution, just set it using the browser parameter.
-
-```version: '2.1'
-orbs:
-  muuktest: muuklabs/muuktest@1.0.0
-workflows:
-  execute:
-    jobs:
-      - muuktest/mkcli:
-          t: TC0001
-          browser: firefox
-```
-
-### Run a test by name
+### Run a test by hashtag
 This example executes all the tests with the hashtag '#deployment' (notice the # char should not be included on the command).
 
 ```version: 2.1
