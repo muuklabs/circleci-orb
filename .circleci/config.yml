@@ -37,6 +37,8 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
+      - muuktest/mkcli # Run orb itself
+
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: muuklabs/muuktest
@@ -44,6 +46,8 @@ workflows:
           requires:
             - orb-tools/lint
             - orb-tools/pack
+            - muuktest/mkcli
+              t: TC17937
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
