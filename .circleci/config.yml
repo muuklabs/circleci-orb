@@ -37,8 +37,6 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
-      - muuktest/mkcli: # Run orb itself
-          t: TC17937
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: muuklabs/muuktest
@@ -46,7 +44,6 @@ workflows:
           requires:
             - orb-tools/lint
             - orb-tools/pack
-            - muuktest/mkcli
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
@@ -62,6 +59,9 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
+      # Run any integration tests defined within the `jobs` key.
+      - muuktest/mkcli: # Run orb itself
+        t: TC17937
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
@@ -74,6 +74,8 @@ workflows:
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: false
+          requires:
+            - muuktest/mkcli
           filters:
             branches:
               only:
