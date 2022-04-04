@@ -19,7 +19,7 @@ Just provide the test tag, this test will be executed on a chrome browser (defau
 
 ```version: '2.1'
 orbs:
-  muuktest: muuklabs/muuktest@1.0.0
+  muuktest: muuklabs/muuktest@1.0.1
 workflows:
   execute:
     jobs:
@@ -32,7 +32,7 @@ We also support firefox execution, just set it using the browser parameter.
 
 ```version: '2.1'
 orbs:
-  muuktest: muuklabs/muuktest@1.0.0
+  muuktest: muuklabs/muuktest@1.0.1
 workflows:
   execute:
     jobs:
@@ -46,7 +46,7 @@ This example executes all the tests with the hashtag '#deployment' (notice the #
 
 ```version: 2.1
   orbs:
-    muuktest: muuklabs/muuktest@1.0.0
+    muuktest: muuklabs/muuktest@1.0.1
   workflows:
     execute:
       jobs:
