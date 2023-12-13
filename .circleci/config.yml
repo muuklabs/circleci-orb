@@ -2,9 +2,12 @@ version: 2.1
 
 orbs:
   muuktest: muuklabs/muuktest@<<pipeline.parameters.dev-orb-version>>
-  orb-tools: circleci/orb-tools@10.0
-  bats: circleci/bats@1.0
-  shellcheck: circleci/shellcheck@2.0
+  orb-tools: circleci/orb-tools@12.0.4
+  shellcheck: circleci/shellcheck@3.1
+
+filters: &filters
+  tags:
+    only: /.*/
 
 # Pipeline Parameters
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
@@ -35,8 +38,15 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
+      - orb-tools/lint: # Lint Yaml files
+          filters: *filters
+      - orb-tools/pack: # Pack orb source
+          filters: *filters
+      - orb-tools/review:
+          max_command_length: 200
+          filters: *filters
+      - shellcheck/check:
+          filters: *filters
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: muuklabs/muuktest
@@ -62,6 +72,10 @@ workflows:
       # Run any integration tests defined within the `jobs` key.
       - muuktest/mkcli: # Run orb itself
           t: TC17937
+          muuk-key: MUUK_KEY
+      - muuktest/mkpw: # Run orb itself
+          t: TC17937
+          muuk-key: MUUK_KEY
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
