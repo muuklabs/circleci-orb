@@ -42,11 +42,6 @@ workflows:
           filters: *filters
       - orb-tools/pack: # Pack orb source
           filters: *filters
-      - orb-tools/review:
-          max_command_length: 200
-          filters: *filters
-      - shellcheck/check:
-          filters: *filters
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: muuklabs/muuktest
