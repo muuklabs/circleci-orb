@@ -67,10 +67,10 @@ workflows:
       # Run any integration tests defined within the `jobs` key.
       - muuktest/mkcli: # Run orb itself
           t: TC17937
-          muuk-key: MUUK_KEY
+          muuk_key: MUUK_KEY
       - muuktest/mkpw: # Run orb itself
           t: TC17937
-          muuk-key: MUUK_KEY
+          muuk_key: MUUK_KEY
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
