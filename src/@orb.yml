@@ -1,9 +1,8 @@
 version: 2.1
 
-description: |
-  MuukTest is a codeless test automation platform designed to make software testing 20x faster, since first day.
-  MuukTest CircleCI Orb provides a simple configuration to enable test execution from your muuktest.com organization within your CircleCI CI/CD process, easily.
+description: >
+  Easily execute tests from MuukTest on CircleCI integration. Provides jobs for executing on Selenium (using our mkcli python script) or Playwright.
 
 display:
   home_url: "https://www.muuktest.com"
-  source_url: "https://github.com/muuklabs/circleci-orb"
+  source_url: "https://github.com/muuklabs/circleci-orb/tree/alpha"
