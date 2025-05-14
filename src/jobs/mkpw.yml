@@ -7,6 +7,7 @@ docker:
       MUUKTEST_TAG_PROPERTY: << parameters.p >>
       MUUKTEST_TAG_VALUE: << parameters.t >>
       MUUKTEST_BROWSER: << parameters.browser >>
+      BASE_TEST_URL: << parameters.base_url >>
 
 parameters:
 
@@ -25,6 +26,11 @@ parameters:
     default: chromium
     enum: [chromium, firefox]
     description: "Set either from chrome or firefox to run the script on."
+
+  base_url:
+    description: "URL to be used as domain for this pipeline execution of the tests. Suitable for ephemeral URLs from pipeline deployment."
+    type: string
+    default: ""
 
   muuk_key:
     default: MUUKTEST_KEY
