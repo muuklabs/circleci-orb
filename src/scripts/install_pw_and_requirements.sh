@@ -8,3 +8,4 @@ npm install cheerio
 npm install xpath
 npm install @xmldom/xmldom
 npm install @faker-js/faker
+npm install otpauth
