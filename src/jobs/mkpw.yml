@@ -7,7 +7,6 @@ docker:
       MUUKTEST_TAG_PROPERTY: << parameters.p >>
       MUUKTEST_TAG_VALUE: << parameters.t >>
       MUUKTEST_BROWSER: << parameters.browser >>
-      BASE_TEST_URL: << parameters.base_url >>
 
 parameters:
 
@@ -46,10 +45,19 @@ steps:
         MUUKTEST_KEY_INTERNAL=${<< parameters.muuk_key >>}
         printf '{ "key": "%s"}' "$MUUKTEST_KEY_INTERNAL" > file.json
         cat file.json
+        INTERNAL_BASE_URL_VAR="<< parameters.base_url >>"
+        if [ "$INTERNAL_BASE_URL_VAR" != "" ]; then
+          URL_VALUE=$(printenv "$INTERNAL_BASE_URL_VAR" 2>/dev/null || true)
+          if [ -z "$URL_VALUE" ]; then
+            URL_VALUE="$INTERNAL_BASE_URL_VAR"
+          fi
+          echo "\nResolved URL to provided value: $URL_VALUE"
+          echo "export BASE_TEST_URL=\"$URL_VALUE\"" >> $BASH_ENV
+        fi
 
   - run:
       name: Installing libraries dependencies
-      command: sudo apt-get update && sudo apt-get install -y unzip
+      command: <<include(scripts/install_pw_dependencies.sh)>>
 
   - run:
       name: Retrieve MuukTest config files and Test scripts
@@ -64,4 +72,4 @@ steps:
       name: Execute MuukTest E2E
       command: |
         cd executor || { echo "Failure: executor directory not found!"; exit 1; }
-        npx playwright test --workers=3 --project=$MUUKTEST_BROWSER
+        npx playwright test --project=$MUUKTEST_BROWSER
