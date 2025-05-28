@@ -7,6 +7,7 @@ docker:
       MUUKTEST_TAG_PROPERTY: << parameters.p >>
       MUUKTEST_TAG_VALUE: << parameters.t >>
       MUUKTEST_BROWSER: << parameters.browser >>
+      BASE_TEST_URL: << parameters.base_url >>
 
 parameters:
 
