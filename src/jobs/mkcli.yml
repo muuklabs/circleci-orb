@@ -2,7 +2,7 @@ description: >
   MuukTest Selenium executor with Circle CI on Github.
 
 docker:
-  - image: cimg/python:3.7-browsers
+  - image: cimg/python:3.10-browsers
     environment:
       GRADLE_OPTS: -Xmx1024m -XX:MaxMetaspaceSize=256m
       GRADLE_USER_HOME: .gradle-home

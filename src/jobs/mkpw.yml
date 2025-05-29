@@ -27,7 +27,7 @@ parameters:
     description: "Set either from chrome or firefox to run the script on."
 
   base_url:
-    description: "URL to be used as domain for this pipeline execution of the tests. Suitable for ephemeral URLs from pipeline deployment."
+    description: "URL to be used as domain for this pipeline execution of the tests. This parameter can also receive an env var name and manage to resolve the value. Either use a literal value or a name of an env variable to resolve the URL to be used."
     type: string
     default: ""
 

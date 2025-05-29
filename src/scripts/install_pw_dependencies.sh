@@ -1,14 +1,12 @@
 #!/bin/bash
 cd executor || { echo "Failure: executor directory not found!"; exit 1; }
-sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-NODE_MAJOR=20
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-sudo apt-get install -y \
-  nodejs \
-  gcc g++ make \
-  npm \
-  unzip \
-  ffmpeg
+# Attempt install, retry if it fails
+sudo apt-get update
+if ! sudo apt-get install -y ffmpeg; then
+  echo "Initial install failed, retrying with --fix-missing..."
+  sudo apt-get update --fix-missing
+  sudo apt-get install -y ffmpeg || {
+    echo "Second install attempt failed."; exit 1;
+  }
+fi
 echo "npm -v" && npm -v
