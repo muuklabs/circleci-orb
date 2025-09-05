@@ -7,5 +7,5 @@ npm install archiver
 npm install cheerio
 npm install xpath
 npm install @xmldom/xmldom
-npm install @faker-js/faker
+npm install @faker-js/faker@7.6.0
 npm install otpauth
