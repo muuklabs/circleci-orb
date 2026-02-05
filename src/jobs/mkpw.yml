@@ -7,6 +7,7 @@ docker:
       MUUKTEST_TAG_PROPERTY: << parameters.p >>
       MUUKTEST_TAG_VALUE: << parameters.t >>
       MUUKTEST_BROWSER: << parameters.browser >>
+      PW_WORKERS: << parameters.workers >>
 
 parameters:
 
@@ -30,6 +31,11 @@ parameters:
     description: "URL to be used as domain for this pipeline execution of the tests. This parameter can also receive an env var name and manage to resolve the value. Either use a literal value or a name of an env variable to resolve the URL to be used."
     type: string
     default: ""
+
+  workers:
+    type: integer
+    default: 2
+    description: "Number of parallel workers to be used by Playwright."
 
   muuk_key:
     default: MUUKTEST_KEY
@@ -72,4 +78,4 @@ steps:
       name: Execute MuukTest E2E
       command: |
         cd executor || { echo "Failure: executor directory not found!"; exit 1; }
-        npx playwright test --project=$MUUKTEST_BROWSER
+        npx playwright test --project=$MUUKTEST_BROWSER --workers=$PW_WORKERS
